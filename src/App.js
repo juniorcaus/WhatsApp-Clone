@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable import/no-anonymous-default-export */
+import React from 'react';
+import  './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+import DonutLargeIcon from '@mui/icons-material/DonutLarge';
+import ChatIcon from '@mui/icons-material/Chat';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+
+
+export default () => {
+  return(
+    <div className="app-window"> {/* Inicio class APP WINDOWN */}
+      <div className="sidebar" >
+          
+          <header>
+
+            <img className='header--avatar' src='https://www.w3schools.com/howto/img_avatar2.png' alt='' />
+            <div className='header--buttons'>
+              <div className='header-btn'>
+                <DonutLargeIcon style={{color: '#919191'}} />
+              </div>
+
+              <div className="header-btn">
+                <ChatIcon style={{color: '#919191'}} />
+              </div>
+
+              <div className='header-btn'>
+                <MoreVertIcon style={{color: '#919191'}} />
+              </div>
+
+             
+            </div>
+
+          </header>
+
+          <div className='search'>
+            search
+          </div>  
+
+          <div className='chatlist'>
+            chatlist
+          </div>
+
+
+      </div>
+      <div className="contentarea" >{/* Inicio class CONTENT AREA */}
+          contentearea.......
+      </div> {/* FIM CLASS CONTENT AREA */}
+      
+    </div> //FIM CLASS APP WINDOWN
   );
-}
-
-export default App;
+} 
