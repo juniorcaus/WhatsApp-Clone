@@ -16,7 +16,13 @@ export default () => {
 
              <div className="chatListItem--line">{/*  2 DIV CHATLIST LINE */}
                  <div className="chatListItem--LastMsg" >
-                        <p>Opa, blz</p>
+                        <p>
+Antonio Rodrigo souza
+há 2 semanas
+fantastica a live, meus parabens pela sua dedicação, espero que tenha a parte 2 com a criacao de status, envio de imagens video e audio e os avisos de mensagens 
+há 1 ano (editado)
+voce tem uma otima comunicação pessoal e  excelente didatica pra ensinar,vou comprar seu curso assim que der.
+</p>
                  </div>{/* 2 fim DIV CHATLIST LINE */}
                  
              </div>

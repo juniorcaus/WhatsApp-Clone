@@ -11,7 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 export default () => {
 
-  const [chatlist, setChatList] = useState([{}, {}, {}, {}]);
+  const [chatlist, setChatList] = useState([{}, {}, {}, {}, {}, {},{}, {}, {}, {}, {}, {}]);
 
   return(
     <div className="app-window"> {/* Inicio class APP WINDOWN */}
