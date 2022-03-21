@@ -1,7 +1,9 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, {useState, useEffect} from 'react';
 import  './App.css';
+
 import  ChatListItem  from './components/ChatListItem';
+import  ChatIntro from './components/ChatIntro'
 
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import ChatIcon from '@mui/icons-material/Chat';
@@ -60,7 +62,7 @@ export default () => {
 
       </div>
       <div className="contentarea" >{/* Inicio class CONTENT AREA */}
-          contentearea.......
+          <ChatIntro />
       </div> {/* FIM CLASS CONTENT AREA */}
       
     </div> //FIM CLASS APP WINDOWN
