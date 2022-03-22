@@ -2,15 +2,15 @@ import React from "react";
 import './ChatListItem.css';
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default () => {
+export default ({onClick, active, data}) => { //recebendo o on click do app.js e passando para a div principal "chatListItem" onde ao clikar no chat abrirá o chatWindow
     return(
-        <div className="chatListItem">{/* INICIO DIV CHATLISTITEM*/}
-         <img className="chatListItem--avatar" src="https://www.w3schools.com/howto/img_avatar2.png" alt=""/>
+        <div className={`chatListItem ${active?'active': ''} `} onClick={onClick}>{/* INICIO DIV CHATLISTITEM*/}
+         <img className="chatListItem--avatar" src={data.image} alt=""/>
 
          <div className="chatListItem--lines">{/* INICIO DIV CHATLIST LINES*/}
 
              <div className="chatListItem--line">{/* 1 DIV CHATLIST LINE */}
-                  <div className="chatListItem--name">Jr caus</div>   
+                  <div className="chatListItem--name"> {data.title} </div>   
                   <div className="chatListItem--date">19:00</div>   
              </div>{/* 1 FIMMM DIV CHATLIST LINE */}
 

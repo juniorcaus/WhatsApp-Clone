@@ -4,6 +4,7 @@ import  './App.css';
 
 import  ChatListItem  from './components/ChatListItem';
 import  ChatIntro from './components/ChatIntro'
+import ChatWindow from './components/ChatWindow';
 
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import ChatIcon from '@mui/icons-material/Chat';
@@ -13,7 +14,15 @@ import SearchIcon from '@mui/icons-material/Search';
 
 export default () => {
 
-  const [chatlist, setChatList] = useState([{}, {}, {}, {}, {}, {},{}, {}, {}, {}, {}, {}]);
+  const [chatlist, setChatList] = useState([
+    {chatId: 1, title: 'Fula de tal', image: 'https://www.w3schools.com/howto/img_avatar2.png'}, 
+    {chatId: 2, title: 'Fula de tal', image: 'https://www.w3schools.com/howto/img_avatar2.png'}, 
+    {chatId: 3, title: 'Fula de tal', image: 'https://www.w3schools.com/howto/img_avatar2.png'}, 
+    {chatId: 4, title: 'Fula de tal', image: 'https://www.w3schools.com/howto/img_avatar2.png'}, 
+  ]);
+
+  // const para dizer qual chat vai está "ativo"
+  const [activeChat, setActiveChat] = useState({}); 
 
   return(
     <div className="app-window"> {/* Inicio class APP WINDOWN */}
@@ -54,6 +63,9 @@ export default () => {
             {chatlist.map((item, key) => (
                 <ChatListItem
                   key={key}
+                  data={item}
+                  active={activeChat.chatId === chatlist[key].chatId} // isso é para apenas manter ativo o chat em que for clicado.
+                  onClick={() => setActiveChat(chatlist[key]) }
                   
                 />
             ))}
@@ -62,7 +74,13 @@ export default () => {
 
       </div>
       <div className="contentarea" >{/* Inicio class CONTENT AREA */}
-          <ChatIntro />
+
+              {activeChat.chatId !== undefined && <ChatWindow /> }  
+              {activeChat.chatId === undefined && 
+                    <ChatIntro />
+              }
+
+
       </div> {/* FIM CLASS CONTENT AREA */}
       
     </div> //FIM CLASS APP WINDOWN
