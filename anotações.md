@@ -17,3 +17,8 @@
     - Mudando o 'true' do active do <chatListItem> do app.js, pois acaba ativando todos os chats. então muda para 'activeChat.chatId' === igual á 'chatlist[key].chatId' 
     - Para receber os intes do chat como title e img tem q adicionar o 'data' = '{item}' no <chatLisItem> e adicionar o 'data' no export default do msm.
     - Substituindo o titulo e avatar do <chatListItem> por {data.title} e {data.image}
+
+    ## TELA DO LADO DIREITO AO CLICAR NA CONVERSA → CHATWINDOW 
+
+    * A tela do chat tem 3 subdivisões parte de cima o header no meio o chat, em baixo onde é digitado 
+    - Iniciou criando a div principal <chatWindow> e em seguida as 3 divisões <chatWindow header, body e footer>
