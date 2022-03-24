@@ -20,5 +20,28 @@
 
     ## TELA DO LADO DIREITO AO CLICAR NA CONVERSA → CHATWINDOW 
 
-    * A tela do chat tem 3 subdivisões parte de cima o header no meio o chat, em baixo onde é digitado 
-    - Iniciou criando a div principal <chatWindow> e em seguida as 3 divisões <chatWindow header, body e footer>
+    > A tela do chat tem 3 subdivisões 'parte de cima o header no meio o chat, em baixo onde é digitado a conversa'
+            > Iniciando a parte superior <chatWindow--header>
+    - Iniciando criando a div principal <chatWindow> e em seguida as 3 divisões <chatWindow header, body e footer>
+
+    - dentro do <chatWindow--header> cria uma novo sub-divisão 
+        - Criando o <chatWindow--headerinfo> uma área de informações do usuarios contendo divs para o Avatar e titulo(nome) 
+
+    - Criando o lado direito onde ficará os butões chamada de <chatWindow--headerbuttons>
+        - Dentro dessa div cria 3 novas div's para colocar os botões chaamda de <ChatWindow--btn>
+        - importar 3 botões sendo eles de <Search>, <attachFile> e <MoreVert>
+
+    - Após isso, é estilizar o arquivo <chatWindow.css> fazendo os alinhamentos e dando as propriedades para que fique de forma correta
+
+
+         > Iniciando parte do meio <chatWindow--body>
+         
+         - Adicionando o Background e editando o Css
+
+         > Iniciando parte do footer <chatWindow--footer>
+         
+         - no footer vai ter 3 áreas, da esquerda com o emoji, do meio com o input para escrever a conversa e a direita, onde vai ter o icon para enviar oq foi escrito e apção de audio.
+         - Criando as 3 div. <chatWindow--pre> <chatWindow--inputarea> <chatWindow--pos>
+         - apos isso, foi adicionado os respectivos icones em suas divs, aproveitando o código da parte do <chatWindow-btn>
+         - depois é feito as edições do footer no css
+         - e é adicionar o <input type text> na class inputarea e um <placeholder> para criar o campo de digitar a mensagem
