@@ -45,3 +45,5 @@
          - apos isso, foi adicionado os respectivos icones em suas divs, aproveitando o código da parte do <chatWindow-btn>
          - depois é feito as edições do footer no css
          - e é adicionar o <input type text> na class inputarea e um <placeholder> para criar o campo de digitar a mensagem
+         
+         >> Finalizando parte visual do proejto
