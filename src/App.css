@@ -39,6 +39,7 @@ header{
 
 .header--buttons {
   display: flex;
+  cursor: pointer;
 }
 
 
