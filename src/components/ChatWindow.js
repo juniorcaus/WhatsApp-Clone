@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import './ChatWindow.css';
 import EmojiPicker from "emoji-picker-react";
 
+import MessageItem from './MessageItem';
+
 import SearchIcon from '@mui/icons-material/Search';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -12,10 +14,25 @@ import SendIcon from '@mui/icons-material/Send';
 import MicIcon from '@mui/icons-material/Mic';
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default () => {
+export default ({user}) => {
+
+    let recognition = null;
+    let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if(SpeechRecognition !== undefined) {
+        recognition = new SpeechRecognition(); 
+    }
 
     const [emojiOpen, setEmojiOpen] = useState(false);    
     const [text, setText] = useState('');
+    const [listening, setListening] = useState(false);
+    const [list, setList] = useState([
+        
+        {author:123, body: 'blablabla1'},
+        
+        {author:123, body: 'blablabla22222'},
+       
+        {author:1234, body: 'blablabla333333blablabla333'},
+     ]);
 
     const handleEmojiClick = (e, emojiObject) => {
         setText( text + emojiObject.emoji );
@@ -28,6 +45,31 @@ export default () => {
     const handleCloseEmoji = () => {
         setEmojiOpen(false);
     }
+
+    const handleMicClick = () => {
+        if(recognition !== null) {
+
+            recognition.onstart = () => {
+                setListening(true);
+            }
+            recognition.onend = () => {
+                setListening(false);
+            }
+
+            recognition.onresult = (e) => {
+                setText( e.results[0][0].transcript );
+            }
+
+            recognition.start();
+
+        }
+    }
+
+    const handleSendClick = () => {
+
+    }
+
+
 
     return(
         <div className="chatWindow">{/*inicio div chatWindow */}
@@ -58,6 +100,10 @@ export default () => {
 
 
             <div className="chatWindow--body">
+
+                {list.map((item, key) => (
+                    <MessageItem key={key} data={item} user={user} />
+                ))}
 
             </div>
 
@@ -93,9 +139,22 @@ export default () => {
 
                 <div className="chatWindow--pos">{/*INI CHAT WIN POS */}
 
-                <div className="chatWindow--btn">
-                        <SendIcon  style={{color: '#919191'}} />
-                    </div>      
+                            {text === '' &&
+                                <div onClick={handleMicClick} className="chatWindow--btn">
+                                <MicIcon  style={{color: listening ? '#126ece ' : '#919191'}} />
+                                </div>  
+
+                            } 
+                             { text !== '' &&
+                                <div onClick={handleSendClick} className="chatWindow--btn">
+                                <SendIcon  style={{color: '#919191'}} />
+                                </div> 
+
+                            }
+
+                        
+
+                             
 
                 </div>{/*FIM CHAT WIN POS*/}
 
