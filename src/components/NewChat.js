@@ -1,17 +1,27 @@
-import React, {useState, }  from "react";
+import React, {useState, useEffect }  from "react";
 import './NewChat.css';
+import Api from "../Api";
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ({user, chatlist, show, setShow}) => {
 
-    const [list, setList] = useState([
-        {id: 123,   avatar: 'https://www.w3schools.com/howto/img_avatar2.png', name: 'Jr1'},
-        {id: 123,   avatar: 'https://www.w3schools.com/howto/img_avatar2.png', name: 'Jr2'},
-        {id: 123,   avatar: 'https://www.w3schools.com/howto/img_avatar2.png', name: 'Jr3'},
-        {id: 123,   avatar: 'https://www.w3schools.com/howto/img_avatar2.png', name: 'Jr4'},
-    ]);
+    const [list, setList] = useState([]);
+
+    useEffect(()=>{
+        const getList = async () => {
+            if(user !== null) {
+                let results = await Api.getContactList(user.id);
+                setList(results);
+            }
+        }
+        getList();
+    }, [user] ); 
+    
+    const addNewChat = async (user2) => {
+        await Api.addNewChat(user, user2);
+    }  
 
     const handleClose = () => {
         setShow(false);
@@ -28,7 +38,7 @@ export default ({user, chatlist, show, setShow}) => {
             </div>
             <div className="newChat--list">
                 {list.map((item, key)=>(
-                    <div className="newChat--item" key={key} >
+                    <div onClick={()=>addNewChat(item)}  className="newChat--item" key={key} >
                         <img className="newChat--itemavatar" src={item.avatar} alt="" />
                         <div className="newChat-itemname"> {item.name}  </div>
                     </div>

@@ -2,11 +2,14 @@
 import React, {useState, useEffect} from 'react';
 import  './App.css';
 
+import Api from './Api';  
+
 import ChatListItem  from './components/ChatListItem';
 import ChatIntro from './components/ChatIntro'
 import ChatWindow from './components/ChatWindow';
 import NewChat from './components/NewChat';
 import Login from './components/Login';
+
 
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import ChatIcon from '@mui/icons-material/Chat';
@@ -16,12 +19,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 export default () => {
 
-  const [chatlist, setChatList] = useState([
-    {chatId: 1, title: 'Fula de tal', image: 'https://www.w3schools.com/howto/img_avatar2.png'}, 
-    {chatId: 2, title: 'Fula de tal', image: 'https://www.w3schools.com/howto/img_avatar2.png'}, 
-    {chatId: 3, title: 'Fula de tal', image: 'https://www.w3schools.com/howto/img_avatar2.png'}, 
-    {chatId: 4, title: 'Fula de tal', image: 'https://www.w3schools.com/howto/img_avatar2.png'}, 
-  ]);
+  const [chatlist, setChatList] = useState([]);
 
   // const para dizer qual chat vai está "ativo"
   const [activeChat, setActiveChat] = useState({}); 
@@ -37,9 +35,10 @@ export default () => {
     let newUser = {
       id: u.uid,
       name: u.displayName,
-      avatar: u.photoURL
+      avatar: u.photoURL        
     };
-    //
+    await Api.addUser(newUser);
+    
     setUser(newUser);
 
   }
