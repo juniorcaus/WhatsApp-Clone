@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './ChatWindow.css';
 import EmojiPicker from "emoji-picker-react";
+
+import Api from "../Api";
 
 import MessageItem from './MessageItem';
 
@@ -13,8 +15,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import MicIcon from '@mui/icons-material/Mic';
 
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default ({user}) => {
+export default ({user, data}) => {
 
     let recognition = null;
     let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -25,14 +28,16 @@ export default ({user}) => {
     const [emojiOpen, setEmojiOpen] = useState(false);    
     const [text, setText] = useState('');
     const [listening, setListening] = useState(false);
-    const [list, setList] = useState([
-        
-        {author:123, body: 'blablabla1'},
-        
-        {author:123, body: 'blablabla22222'},
-       
-        {author:1234, body: 'blablabla333333blablabla333'},
-     ]);
+    const [list, setList] = useState([]);
+    const [users, setUsers] = useState([]);
+
+    useEffect(()=>{
+
+        setList([]);
+        let unsub = Api.onChatContent(data.chatId, setList, setUsers);
+        return unsub;
+
+    }, [data.chatId])
 
     const handleEmojiClick = (e, emojiObject) => {
         setText( text + emojiObject.emoji );
@@ -65,8 +70,18 @@ export default ({user}) => {
         }
     }
 
-    const handleSendClick = () => {
+    const handleInputKeyUp = (e) => {
+        if(e.keyCode == 13) {
+            handleSendClick();
+        }
+    }
 
+    const handleSendClick = () => {
+        if(text !== '' ) {
+            Api.sendMessage(data, user.id, 'text', text, users);
+            setText('');
+            setEmojiOpen(false);
+        }
     }
 
 
@@ -77,9 +92,9 @@ export default ({user}) => {
             <div className="chatWindow--header">
 
                 <div className="chatWindow--headerinfo">{/*inicio HEADERINFO */}
-                    <img className="chatWindow--avatar" src="https://www.w3schools.com/howto/img_avatar2.png" alt="" />
+                    <img className="chatWindow--avatar" src={data.image} alt="" />
                     
-                    <div className="chatWindow--name">Jr caus </div>
+                    <div className="chatWindow--name">{data.title}- {data.chatId} </div>
 
                 <div className="chatWindow--headerbuttons">{/*inicio CHAT WINDOW BUTTONS */}
 
@@ -133,7 +148,7 @@ export default ({user}) => {
 
                 <div className="chatWindow--inputarea">{/*INI INPUT AREA WIN*/}
 
-                    <input className="chatWindow--input" type="text" placeholder="Digite uma mensagem" value={text} onChange={e=>setText(e.target.value)} />       
+                    <input className="chatWindow--input" type="text" placeholder="Digite uma mensagem" value={text} onChange={e=>setText(e.target.value)} onKeyUp={handleInputKeyUp} />       
 
                 </div>{/*FIM INPUT AREA WIN*/}
 

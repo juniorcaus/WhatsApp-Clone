@@ -109,7 +109,7 @@ export default () => {
       </div>
       <div className="contentarea" >{/* Inicio class CONTENT AREA */}
 
-              {activeChat.chatId !== undefined && <ChatWindow user={user} /> }  
+              {activeChat.chatId !== undefined && <ChatWindow user={user} data={activeChat} /> }  
               {activeChat.chatId === undefined && <ChatIntro />
               }
 
