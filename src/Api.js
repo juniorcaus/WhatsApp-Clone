@@ -75,8 +75,24 @@ export default {
         return db.collection('users').doc(userId).onSnapshot((doc)=> {
             if(doc.exists) {
                 let data = doc.data();
-
                 if(data.chats) {
+                     let chats = [...data.chats];
+
+                     chats.sort((a,b) =>{
+                        if(a.lastMessageDate === undefined) {
+                            return -1;
+                        }
+                        if(a.lastMessageDate.seconds < b.lastMessageDate.seconds) {
+                            return 1;
+                        } else {
+                            return -1;
+                        }
+
+
+                     });
+
+
+
                     setChatList(data.chats);
                     
                 }

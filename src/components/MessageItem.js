@@ -8,7 +8,7 @@ export default ({data, user}) => {
     const [time, setTime] = useState('');
 
     useEffect(()=>{
-        if(data.date > 0) {
+        if(data.date     > 0) {
             let d = new Date(data.date.seconds * 1000 );
             let hours = d.getHours();
             let minutes = d.getMinutes();

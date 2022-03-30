@@ -94,7 +94,7 @@ export default ({user, data}) => {
                 <div className="chatWindow--headerinfo">{/*inicio HEADERINFO */}
                     <img className="chatWindow--avatar" src={data.image} alt="" />
                     
-                    <div className="chatWindow--name">{data.title}- {data.chatId} </div>
+                    <div className="chatWindow--name">{data.title}</div>
 
                 <div className="chatWindow--headerbuttons">{/*inicio CHAT WINDOW BUTTONS */}
 
